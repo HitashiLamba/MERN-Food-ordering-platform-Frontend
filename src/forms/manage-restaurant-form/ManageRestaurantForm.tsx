@@ -90,7 +90,9 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
   }, [form, restaurant]);
 
   const onSubmit = (formDataJson: RestaurantFormData) => {
+    //convert formdatajson to new formdata object
     const formData = new FormData();
+
 
     formData.append("restaurantName", formDataJson.restaurantName);
     formData.append("city", formDataJson.city);
@@ -105,10 +107,10 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
       formDataJson.estimatedDeliveryTime.toString()
     );
     formDataJson.cuisines.forEach((cuisine, index) => {
-      formData.append(`cuisines[${index}]`, cuisine);
+      formData.append(`cuisines[${index}]`, cuisine);//cusine[0]=pizza
     });
     formDataJson.menuItems.forEach((menuItem, index) => {
-      formData.append(`menuItems[${index}][name]`, menuItem.name);
+      formData.append(`menuItems[${index}][name]`, menuItem.name);//menuitem[0][name]=cheese pizza
       formData.append(
         `menuItems[${index}][price]`,
         (menuItem.price * 100).toString()
